@@ -5,7 +5,7 @@ import { BoletoPaymentResponseDto } from '../../dto/create-boleto-response.dto';
 import { CreateBoletoDto } from '../../dto/create-boleto.dto';
 
 @Injectable()
-export class PayProvider {
+export class PaymentsProvider {
   private readonly baseUrl = process.env.PAY_BASE_URL;
   private readonly apiKey = process.env.PAY_API_KEY;
 
