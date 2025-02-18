@@ -1,19 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CustomerProvider } from './customer.provider';
+import { PaymentProvider } from './payment';
 import { HttpModule } from '@nestjs/axios';
 
-describe('Customer', () => {
-  let provider: CustomerProvider;
-
+describe('Pay', () => {
+  let provider: PaymentProvider;
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [HttpModule],
-      providers: [CustomerProvider],
+      providers: [PaymentProvider],
     }).compile();
-
-    provider = module.get<CustomerProvider>(CustomerProvider);
+    provider = module.get<PaymentProvider>(PaymentProvider);
   });
-
   it('should be defined', () => {
     expect(provider).toBeDefined();
   });
