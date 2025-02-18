@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { PayProvider } from '../providers/payments/payments';
-import { CreateBoletoDto } from '../dto/create-boleto.dto';
+import { PaymentProvider } from '../providers/payment/payment';
+import { PaymentDto } from '../dto/payment.dto';
 
 @Injectable()
-export class PayService {
-  constructor(private payProvider: PayProvider) {}
-  async createBoleto(body: CreateBoletoDto) {
-    const response = await this.payProvider.payment(body);
+export class PaymentService {
+  constructor(private paymentProvider: PaymentProvider) {}
+  async createPayment(body: PaymentDto) {
+    const response = await this.paymentProvider.payment(body);
     return response;
   }
 }
