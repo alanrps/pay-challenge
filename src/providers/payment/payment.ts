@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
-import { BoletoPaymentResponseDto } from '../../dto/create-boleto-response.dto';
+import { PaymentResponseDto } from '../../dto/payment-response.dto';
 import { PaymentDto } from '../../dto/payment.dto';
 
 @Injectable()
@@ -11,11 +11,14 @@ export class PaymentProvider {
 
   constructor(private readonly httpService: HttpService) {}
 
-  async payment(body: PaymentDto): Promise<BoletoPaymentResponseDto> {
+  async payment(
+    customer: string,
+    body: PaymentDto,
+  ): Promise<PaymentResponseDto> {
     const response = await firstValueFrom(
-      this.httpService.post<BoletoPaymentResponseDto>(
+      this.httpService.post<PaymentResponseDto>(
         `${this.baseUrl}/v3/payments`,
-        JSON.stringify(body),
+        JSON.stringify({ ...body, customer }),
         {
           headers: {
             access_token: this.apiKey,
