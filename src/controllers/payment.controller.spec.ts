@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PaymentController } from './payment.controller';
-import { PaymentService } from '../services/pay.service';
+import { PaymentService } from '../services/payment.service';
 import { PaymentProvider } from '../providers/payment/payment';
 import { HttpModule } from '@nestjs/axios';
 

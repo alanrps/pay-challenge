@@ -1,21 +1,21 @@
-export class DiscountDto {
+export interface DiscountDto {
   value: number;
   limitDate: string | null;
   dueDateLimitDays: number;
   type: string;
 }
 
-export class FineDto {
+export interface FineDto {
   value: number;
   type: string;
 }
 
-export class InterestDto {
+export interface InterestDto {
   value: number;
   type: string;
 }
 
-export interface BoletoPaymentResponseDto {
+export interface PaymentResponseDto {
   object: string;
   id: string;
   dateCreated: string;

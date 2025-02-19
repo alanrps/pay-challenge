@@ -1,4 +1,4 @@
-export interface CustomerResponseDto {
+interface CustomerDto {
   object: string;
   id: string;
   dateCreated: string;
@@ -29,4 +29,13 @@ export interface CustomerResponseDto {
   cityName: string;
   state: string;
   country: string;
+}
+
+export interface CustomerResponseDto {
+  object: string;
+  hasMore: boolean;
+  totalCount: number;
+  limit: number;
+  offset: number;
+  data: Array<CustomerDto>;
 }
