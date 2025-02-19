@@ -1,14 +1,29 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { PaymentService } from '../services/pay.service';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  HttpException,
+  Post,
+} from '@nestjs/common';
+import { PaymentService } from '../services/payment.service';
+import { AxiosError } from 'axios';
 import { PaymentDto } from '../dto/payment.dto';
 
-@Controller('payment')
+@Controller('payments')
 export class PaymentController {
   constructor(private paymentService: PaymentService) {}
   @Post()
   async createPayment(@Body() body: PaymentDto) {
-    const response = await this.paymentService.createPayment(body);
-
-    return response;
+    try {
+      return await this.paymentService.createPayment(body);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        throw new BadRequestException(error.response?.data || error.message);
+      }
+      if (error instanceof HttpException) {
+        throw error;
+      }
+      throw new BadRequestException('Erro ao processar pagamento.');
+    }
   }
 }

@@ -1,6 +1,7 @@
 import {
   IsArray,
   IsBoolean,
+  IsDateString,
   IsEmail,
   IsEnum,
   IsInt,
@@ -10,12 +11,13 @@ import {
   IsString,
   Length,
   Matches,
+  Max,
   MaxLength,
   Min,
   ValidateIf,
   ValidateNested,
 } from 'class-validator';
-import { BillingType } from '../enum/billingType.enum';
+import { BillingTypeEnum } from '../enum/billingType.enum';
 import { Type } from 'class-transformer';
 
 class DiscountDto {
@@ -162,15 +164,16 @@ class CreditCardHolderInfoDto {
 
 export class PaymentDto {
   @IsString()
-  customer: string;
+  cpfCnpj: string;
 
-  @IsEnum(BillingType, { message: 'Invalid billing type' })
+  @IsString()
+  @IsEnum(BillingTypeEnum, { message: 'Invalid billing type' })
   billingType: string;
 
   @IsNumber()
   value: number;
 
-  @IsString()
+  @IsDateString()
   dueDate: string;
 
   @IsOptional()
@@ -184,6 +187,7 @@ export class PaymentDto {
 
   @IsOptional()
   @IsInt()
+  @Max(21)
   installmentCount: number;
 
   @IsOptional()
@@ -228,31 +232,50 @@ export class PaymentDto {
   @IsOptional()
   @ValidateNested()
   @Type(() => CreditCardDto)
-  @ValidateIf((o: PaymentDto) => o.billingType === 'CREDIT_CARD')
+  @ValidateIf(
+    (o: PaymentDto) =>
+      (o.billingType as BillingTypeEnum) === BillingTypeEnum.CREDIT_CARD,
+  )
   creditCard?: CreditCardDto;
 
   @IsOptional()
   @ValidateNested()
   @Type(() => CreditCardHolderInfoDto)
-  @ValidateIf((o: PaymentDto) => o.billingType === 'CREDIT_CARD')
+  @ValidateIf(
+    (o: PaymentDto) =>
+      (o.billingType as BillingTypeEnum) === BillingTypeEnum.CREDIT_CARD,
+  )
   creditCardHolderInfo: CreditCardHolderInfoDto;
 
   @IsOptional()
   @IsString()
-  @ValidateIf((o: PaymentDto) => o.billingType === 'CREDIT_CARD')
+  @ValidateIf(
+    (o: PaymentDto) =>
+      (o.billingType as BillingTypeEnum) === BillingTypeEnum.CREDIT_CARD,
+  )
   creditCardToken: string;
 
   @IsOptional()
   @IsBoolean()
-  @ValidateIf((o: PaymentDto) => o.billingType === 'CREDIT_CARD')
+  @ValidateIf(
+    (o: PaymentDto) =>
+      (o.billingType as BillingTypeEnum) === BillingTypeEnum.CREDIT_CARD,
+  )
   authorizeOnly: boolean;
 
+  @IsOptional()
   @IsString()
-  @ValidateIf((o: PaymentDto) => o.billingType === 'CREDIT_CARD')
+  @ValidateIf(
+    (o: PaymentDto) =>
+      (o.billingType as BillingTypeEnum) === BillingTypeEnum.CREDIT_CARD,
+  )
   remoteIp: string;
 
   // * BOLETO
-  @ValidateIf((o: PaymentDto) => o.billingType === 'BOLETO')
+  @ValidateIf(
+    (o: PaymentDto) =>
+      (o.billingType as BillingTypeEnum) === BillingTypeEnum.BOLETO,
+  )
   @IsOptional()
   @IsInt()
   daysAfterDueDateToRegistrationCancellation: number;
