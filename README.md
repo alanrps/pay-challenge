@@ -71,3 +71,20 @@ Após criar o usuário, basta utilizar o **CPF** cadastrado para prosseguir com 
 O código-fonte do **frontend** está disponível no repositório:  
 
 🔗 [Payment Challenge Frontend](https://github.com/alanrps/payment-challenge-frontend)  
+
+
+## Testes automatizados
+
+Os testes automatizados foram apenas iniciados por conta do tempo, no entanto, é possível executá-los com o comando:
+
+``` bash
+npm run test
+```
+
+Para visualizar a cobertura dos testes, execute o seguinte comando:  
+
+```bash
+npm run test:cov
+```
+
+Isso exibirá as estatísticas diretamente no console. Além disso, uma pasta **coverage/lcov-report** será criada. Para uma visualização mais detalhada, abra o arquivo **index.html** dessa pasta em seu navegador.
