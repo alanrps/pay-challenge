@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { PaymentProvider } from '../providers/payment/payment';
-import { BillingTypeEnum } from 'src/enum/billingType.enum';
+import { PaymentProvider } from '../providers/payment/payment.provider';
+import { BillingTypeEnum } from '../enum/billingType.enum';
 import { PaymentDto } from '../dto/payment.dto';
-import { CustomerProvider } from 'src/providers/customer/customer.provider';
+import { CustomerProvider } from '../providers/customer/customer.provider';
 
 @Injectable()
 export class PaymentService {

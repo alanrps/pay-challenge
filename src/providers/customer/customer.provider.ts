@@ -1,9 +1,9 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
-import { CreateCustomerResponseDto } from 'src/dto/create-customer-response.dto';
-import { CreateCustomerDto } from 'src/dto/create-customer.dto';
-import { CustomerResponseDto } from 'src/dto/get-customer-response.dto';
+import { CreateCustomerResponseDto } from '../../dto/create-customer-response.dto';
+import { CreateCustomerDto } from '../../dto/create-customer.dto';
+import { CustomerResponseDto } from '../../dto/get-customer-response.dto';
 
 @Injectable()
 export class CustomerProvider {

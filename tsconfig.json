@@ -1,5 +1,13 @@
 {
   "compilerOptions": {
+    "paths": {
+      "@providers/*": ["src/providers/*"],
+      "@services/*": ["src/services/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@dto/*": ["src/dto/*"],
+      "@enums/*": ["src/enum/*"],
+      "@utils/*": ["src/utils/*"]
+    },
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,

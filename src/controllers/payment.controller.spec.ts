@@ -1,8 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PaymentController } from './payment.controller';
 import { PaymentService } from '../services/payment.service';
-import { PaymentProvider } from '../providers/payment/payment';
 import { HttpModule } from '@nestjs/axios';
+import { PaymentProvider } from '../providers/payment/payment.provider';
+import { CustomerProvider } from '../providers/customer/customer.provider';
 
 describe('PayController', () => {
   let controller: PaymentController;
@@ -11,7 +12,7 @@ describe('PayController', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [HttpModule],
       controllers: [PaymentController],
-      providers: [PaymentService, PaymentProvider],
+      providers: [PaymentService, PaymentProvider, CustomerProvider],
     }).compile();
 
     controller = module.get<PaymentController>(PaymentController);

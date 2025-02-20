@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { PaymentProvider } from './payment';
+import { PaymentProvider } from './payment.provider';
 import { HttpModule } from '@nestjs/axios';
 
 describe('Pay', () => {
